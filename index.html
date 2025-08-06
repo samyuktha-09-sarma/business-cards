@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Luxury Neon Business Card Generator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to right, #000000, #4B0082, #000080); /* Black + Purple + Royal Blue */
+      color: white;
+      font-style: italic;
+      overflow: hidden;
+    }
+
+    .left, .right {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left {
+      background: rgba(255, 255, 255, 0.02);
+      border-right: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .left h1 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #ffccff;
+    }
+
+    .left input {
+      margin: 10px 0;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      font-style: italic;
+      background-color: #1a1a1a;
+      color: white;
+      box-shadow: 0 0 5px #4B0082;
+    }
+
+    .left button {
+      margin-top: 20px;
+      padding: 12px;
+      background: linear-gradient(to right, #6a1b9a, #2196f3);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-style: italic;
+      box-shadow: 0 0 10px #9c27b0;
+      transition: all 0.3s ease;
+    }
+
+    .left button:hover {
+      background: #ffffff;
+      color: #4B0082;
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      width: 400px;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(147, 112, 219, 0.7);
+      color: #ffffff;
+      font-style: italic;
+      transition: 0.4s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 40px rgba(138, 43, 226, 0.8);
+    }
+
+    .card h2 {
+      font-size: 28px;
+      margin-top: 0;
+      color: #e1bfff;
+    }
+
+    .card p {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .card a {
+      color: #99ccff;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="left">
+    <h1>Build Your Business Card</h1>
+    <input type="text" id="fullName" placeholder="Full Name">
+    <input type="text" id="role" placeholder="Your Role (e.g., Developer)">
+    <input type="email" id="email" placeholder="Email Address">
+    <input type="text" id="ide" placeholder="Favorite IDE (e.g., VS Code)">
+    <input type="url" id="linkedin" placeholder="LinkedIn URL">
+    <input type="url" id="github" placeholder="GitHub URL">
+    <button onclick="generateCard()">Generate Card</button>
+  </div>
+
+  <div class="right">
+    <div id="card" class="card" style="display: none;"></div>
+  </div>
+
+  <script>
+    function generateCard() {
+      const name = document.getElementById("fullName").value;
+      const role = document.getElementById("role").value;
+      const email = document.getElementById("email").value;
+      const ide = document.getElementById("ide").value;
+      const linkedin = document.getElementById("linkedin").value;
+      const github = document.getElementById("github").value;
+
+      if (!name || !role || !email) {
+        alert("Please fill in at least Name, Role, and Email.");
+        return;
+      }
+
+      const cardContent = `
+        <h2>${name}</h2>
+        <p><strong>Role:</strong> ${role}</p>
+        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+        <p><strong>Favorite IDE:</strong> ${ide}</p>
+        <p><strong>LinkedIn:</strong> <a href="${linkedin}" target="_blank">${linkedin}</a></p>
+        <p><strong>GitHub:</strong> <a href="${github}" target="_blank">${github}</a></p>
+      `;
+
+      const cardDiv = document.getElementById("card");
+      cardDiv.innerHTML = cardContent;
+      cardDiv.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
